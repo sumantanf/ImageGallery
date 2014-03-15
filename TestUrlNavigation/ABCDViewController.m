@@ -74,7 +74,7 @@
                 frame.origin.y += 80;
             }
         }
-        //  NSLog(@" x is %f and y is %f index is %lu", frame.origin.x, frame.origin.y, (unsigned long)imageIndex);
+        
         self.ScrollView.pagingEnabled = YES;
         subview.tag = imageIndex;
         subview.frame = frame;
