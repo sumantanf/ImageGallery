@@ -85,9 +85,9 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSLog(@"connectionDidFinishLoading");
+    //NSLog(@"connectionDidFinishLoading");
     NSDictionary *fpDetails = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:nil];
-    NSLog(@"Downloaded data is  %@",fpDetails);
+    //NSLog(@"Downloaded data is  %@",fpDetails);
     
     if ([delegate respondsToSelector:@selector(downloadDidSucceed:)])
     {
