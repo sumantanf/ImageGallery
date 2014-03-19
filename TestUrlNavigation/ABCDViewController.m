@@ -10,9 +10,7 @@
 #import "ABCDAppDelegate.h"
 
 @interface ABCDViewController ()<DownloadProtocolDelegate, AsyncDownloadDelegate>{
-    UIImageView *subview;
-    NSMutableArray *imageList;
-    NSMutableArray *indexList;
+ 
 }
 
 @end
@@ -25,6 +23,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+   
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -47,18 +46,13 @@
 {
     
     NSMutableArray *argsArray = [[NSMutableArray alloc] initWithArray:[data objectForKey:@"SecondaryTileImages"]];
-    
-     imageList = [[NSMutableArray alloc] init];
-    subview = [[UIImageView alloc] init];
-    indexList = [[NSMutableArray alloc] init];
     int height=80;
     for(int i= 0; i < argsArray.count; i++)
     {
     
         NSString *urlstring = [NSString stringWithFormat:@"%@%@",UrlVar,[argsArray objectAtIndex:i]];
-     
-        [imageList addObject:urlstring];
-        NSUInteger imageIndex = [argsArray indexOfObject:[NSNumber numberWithInt:i]];
+        UIImageView *subview = [[UIImageView alloc] init];
+        NSUInteger imageIndex = i;
         CGRect frame;
         frame.origin.x = 100 * imageIndex;
         frame.size.height = 75;
@@ -78,51 +72,40 @@
         self.ScrollView.pagingEnabled = YES;
         subview.tag = imageIndex;
         subview.frame = frame;
+        ABCDAsyncDownload *downloadCntl = [[ABCDAsyncDownload alloc] init];
+        downloadCntl.delegate = self;
+        [downloadCntl downloadImage:urlstring andIndex:[NSNumber numberWithInt:imageIndex]];
 
         [self.ScrollView addSubview:subview];
-        [indexList addObject:[NSNumber numberWithInt:imageIndex]];
+       
     }
     self.ScrollView.contentSize =  CGSizeMake(self.ScrollView.frame.size.width, height);
-    ABCDAsyncDownload *downloadCntl = [[ABCDAsyncDownload alloc] init];
-    downloadCntl.delegate = self;
-    [downloadCntl downloadImage:imageList];
-    
-    NSLog(@"SubView Count:%d",self.ScrollView.subviews.count);
-
+    [self.view addSubview:ScrollView];
 }
 
--(void) AsyncDownloadDidFail:(NSUInteger *) imageIndex{
-    NSLog(@"Downloading image failed");
-    [subview setImage:[UIImage imageNamed:@"notfound.jpg"]];
-    [self.ScrollView addSubview:subview];
+-(void) AsyncDownloadDidFail:(NSNumber *) imageIndex{
+    for(UIImageView *view in self.ScrollView.subviews)
+    {
+        if(view.tag == imageIndex.intValue)
+        {
+            [view setImage:[UIImage imageNamed:@"notfound.jpg"]];
+            [self.ScrollView addSubview:view];
+            [self.view addSubview:ScrollView];
+        }
+    }
     
 }
 
 -(void) AsyncDownloadDidFinishWithImage:(UIImage *)downloadedImage atIndex:(NSNumber *)imageIndex
 {
-//    NSLog(@"Index is %d", imageIndex.intValue);
-  //  NSLog(@"Subview tag:%d",subview.tag);
-    
-    
-    for(int i = 0; i< indexList.count;i++)
-    {
-        if(i == imageIndex.intValue)
-        {
-            NSLog(@"image index is %d", i);
-            [subview setImage:downloadedImage];
-
-            //[self.ScrollView addSubview:[self.ScrollView.subviews objectAtIndex:imageIndex.intValue]];
-
-        }
-        
-    }
-    
-//    if (imageIndex.intValue == subview.tag) {
-//        [subview setImage:downloadedImage];
-//        [self.ScrollView addSubview:subview];
-//    }
-  
-    
+   for(UIImageView *view in self.ScrollView.subviews)
+   {
+       if(view.tag == imageIndex.intValue)
+       {
+           [view setImage:downloadedImage];
+           [self.ScrollView addSubview:view];
+       }
+   }
 }
 
 
@@ -131,9 +114,5 @@
     NSLog(@"Delegate method failure block");
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-}
 
 @end

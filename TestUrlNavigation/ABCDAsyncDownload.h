@@ -11,7 +11,7 @@
 @protocol AsyncDownloadDelegate <NSObject>
 
 -(void) AsyncDownloadDidFinishWithImage: (UIImage *)downloadedImage atIndex:(NSNumber *) imageIndex;
--(void) AsyncDownloadDidFail:(NSUInteger *) imageIndex;
+-(void) AsyncDownloadDidFail:(NSNumber *) imageIndex;
 
 @end
 
@@ -22,5 +22,5 @@
 
 @property (strong, nonatomic) id <AsyncDownloadDelegate> delegate;
 
--(void) downloadImage:(NSMutableArray *) imageArray;
+-(void) downloadImage:(NSString *) imageUrl andIndex:(NSNumber *) imageIndex;
 @end

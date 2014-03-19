@@ -11,41 +11,34 @@
 @implementation ABCDAsyncDownload
 @synthesize delegate;
 
--(void) downloadImage:(NSMutableArray *) imageArray{
+-(void) downloadImage:(NSString *) imageUrl andIndex:(NSNumber *)imageIndex{
     
     dispatch_queue_t imageQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
     
-    for (NSString *urlString in imageArray) {
+    dispatch_async(imageQueue, ^{
         
-        NSUInteger imageIndex = [imageArray indexOfObject:urlString];
-        //NSLog(@"%lu", (unsigned long)imageIndex);
+        NSURL *url = [NSURL URLWithString:imageUrl];
+        NSData *imageData = [NSData dataWithContentsOfURL:url];
+        UIImage *image = [UIImage imageWithData:imageData];
         
-        dispatch_async(imageQueue, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
             
-            NSURL *url = [NSURL URLWithString:urlString];
-            NSData *imageData = [NSData dataWithContentsOfURL:url];
-            UIImage *image = [UIImage imageWithData:imageData];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
+            if(image == NULL){
+                if ([delegate respondsToSelector:@selector(AsyncDownloadDidFail:)])
+                {
+                    [delegate performSelector:@selector(AsyncDownloadDidFail:) withObject:imageIndex];
+                }
                 
-                if(image == NULL){
-                    
-                    if ([delegate respondsToSelector:@selector(AsyncDownloadDidFail:)])
-                    {
-                        [delegate performSelector:@selector(AsyncDownloadDidFail:) withObject:[NSNumber numberWithInteger:imageIndex]];
-                    }
-                    
+            }
+            else{
+                if ([delegate respondsToSelector:@selector(AsyncDownloadDidFinishWithImage:atIndex:)])
+                {
+                    [delegate performSelector:@selector(AsyncDownloadDidFinishWithImage: atIndex:) withObject:image withObject:imageIndex];
                 }
-                else{
-                    if ([delegate respondsToSelector:@selector(AsyncDownloadDidFinishWithImage:atIndex:)])
-                    {
-                        [delegate performSelector:@selector(AsyncDownloadDidFinishWithImage: atIndex:) withObject:image withObject:[NSNumber numberWithInteger:imageIndex]];
-                    }
-                }
-            });
+            }
         });
-        
-    }
+    });
+    
 }
 
 @end
