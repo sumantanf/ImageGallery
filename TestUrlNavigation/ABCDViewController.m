@@ -44,7 +44,8 @@
 
 -(void)downloadDidSucceed:(NSDictionary *) data
 {
-    
+    [self.ScrollView setShowsHorizontalScrollIndicator:NO];
+    [self.ScrollView setShowsVerticalScrollIndicator:NO];
     NSMutableArray *argsArray = [[NSMutableArray alloc] initWithArray:[data objectForKey:@"SecondaryTileImages"]];
     int height=80;
     for(int i= 0; i < argsArray.count; i++)

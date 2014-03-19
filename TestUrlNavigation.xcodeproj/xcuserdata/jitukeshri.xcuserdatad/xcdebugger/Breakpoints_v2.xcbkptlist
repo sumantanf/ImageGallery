@@ -67,11 +67,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TestUrlNavigation/ABCDAsyncDownload.m"
-            timestampString = "416906567.511896"
+            timestampString = "416916515.494745"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "@implementation ABCDAsyncDownload"
             landmarkType = "3">
          </BreakpointContent>
@@ -83,11 +83,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TestUrlNavigation/ABCDAsyncDownload.m"
-            timestampString = "416906567.511896"
+            timestampString = "416916515.494745"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "@implementation ABCDAsyncDownload"
             landmarkType = "3">
          </BreakpointContent>
@@ -99,11 +99,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TestUrlNavigation/ABCDViewController.m"
-            timestampString = "416914520.211671"
+            timestampString = "416916515.494745"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "-AsyncDownloadDidFinishWithImage:atIndex:"
             landmarkType = "5">
          </BreakpointContent>
