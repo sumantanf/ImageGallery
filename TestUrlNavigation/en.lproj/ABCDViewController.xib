@@ -9,6 +9,8 @@
             <connections>
                 <outlet property="ClickMe" destination="12" id="13"/>
                 <outlet property="ScrollView" destination="17" id="19"/>
+                <outlet property="myScrollImage" destination="zuw-dS-ddf" id="wwm-29-hFi"/>
+                <outlet property="scrollImageView" destination="2nh-D4-szV" id="Rki-0V-qeh"/>
                 <outlet property="view" destination="6" id="7"/>
             </connections>
         </placeholder>
@@ -37,6 +39,18 @@
             </subviews>
             <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+        </view>
+        <view contentMode="scaleToFill" id="2nh-D4-szV">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="203" contentMode="scaleToFill" id="zuw-dS-ddf">
+                    <rect key="frame" x="0.0" y="52" width="320" height="454"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
 </document>

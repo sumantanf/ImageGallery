@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>73F1A917-FF7A-4B99-936D-0E3D00D26F94</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TestUrlNavigation</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>50B6D7B0-A632-4C2C-A331-91F654470996</key>
+		<string>https://github.com/sumantanf/ImageGallery.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TestUrlNavigation.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>50B6D7B0-A632-4C2C-A331-91F654470996</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/sumantanf/ImageGallery.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>50B6D7B0-A632-4C2C-A331-91F654470996</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>50B6D7B0-A632-4C2C-A331-91F654470996</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TestUrlNavigation</string>
+		</dict>
+	</array>
+</dict>
+</plist>

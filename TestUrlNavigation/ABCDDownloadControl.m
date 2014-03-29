@@ -28,7 +28,7 @@
     [theRequest setHTTPMethod:@"POST"];
     [theRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [theRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [theRequest setValue:[NSString stringWithFormat:@"%d", [postData length]] forHTTPHeaderField:@"Content-Length"];
+    [theRequest setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postData length]] forHTTPHeaderField:@"Content-Length"];
     [theRequest setHTTPBody:postData];
     // Create the actual connection using the request.
     NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
@@ -55,23 +55,19 @@
     {
         [delegate performSelector:@selector(downloadDidFail)];
     }
-    // The request has failed for some reason!
-    // Check the error var
 }
 
 
 - (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse*)response {
     
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
-    int responseStatusCode = [httpResponse statusCode];
+    NSUInteger responseStatusCode = [httpResponse statusCode];
     if(responseStatusCode != 200){
         if ([delegate respondsToSelector:@selector(downloadDidFail)])
         {
             [delegate performSelector:@selector(downloadDidFail)];
         }
     }
-    
-    NSLog(@"response is %d", responseStatusCode);
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
