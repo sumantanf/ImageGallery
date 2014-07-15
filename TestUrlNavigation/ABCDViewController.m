@@ -13,10 +13,12 @@
 @interface ABCDViewController ()<DownloadProtocolDelegate, AsyncDownloadDelegate>{
     UIImageView *scrollImage;
     UINavigationBar *bottomNav, *topNav;
-    int viewHeight;
+    float viewHeight;
     NSString *version;
-    UINavigationItem *navItem;
-    UIBarButtonItem *leftNav, *rightNav, *deleteImage;
+    UINavigationItem *navItem, *topNavItem;
+    UIBarButtonItem *leftNav, *rightNav, *deleteImage, *backNav;
+    UIView *detailView;
+    UIScrollView *detailImage;
 }
 
 @end
@@ -34,19 +36,20 @@
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
     {
         CGSize result = [[UIScreen mainScreen] bounds].size;
+        viewHeight = result.height;
         if(version.floatValue < 7.0)
         {
             topNav = [[UINavigationBar alloc] initWithFrame:CGRectMake(0.0,  0.0, self.view.frame.size.width, 44.0)];
             self.navigationController.navigationBarHidden = NO;
             bottomNav.barStyle = UIBarStyleDefault;
             topNav.barStyle = UIBarStyleDefault;
-            if(result.height == 480)
+            if(viewHeight == 480)
             {
                 bottomNav = [[UINavigationBar alloc] initWithFrame:CGRectMake(0.0,420, self.view.frame.size.width, 44.0)];
             }
             else
             {
-                bottomNav = [[UINavigationBar alloc] initWithFrame:CGRectMake(0.0,  self.view.frame.size.height+44, self.view.frame.size.width, 44.0)];
+                bottomNav = [[UINavigationBar alloc] initWithFrame:CGRectMake(0.0,self.view.frame.size.height+44, self.view.frame.size.width, 44.0)];
             }
             
         }
@@ -59,7 +62,7 @@
             
             
             
-            if(result.height == 480)
+            if(viewHeight == 480)
             {
                 bottomNav = [[UINavigationBar alloc] initWithFrame:CGRectMake(0.0,420, self.view.frame.size.width, 44.0)];
             }
@@ -73,9 +76,25 @@
         }
        
     }
-    
+    if(viewHeight == 480)
+    {
+        detailView = [[UIView alloc] initWithFrame: CGRectMake ( 0, 0, 320, 480)];
+        detailImage = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, 320, 436)];
+    }
+    else{
+        detailView = [[UIView alloc] initWithFrame: CGRectMake ( 0, 0, 320, 568)];
+        detailImage = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, 320, 460)];
+    }
     
 	navItem  = [[UINavigationItem alloc] init];
+    
+    topNavItem = [[UINavigationItem alloc] init];
+    
+    backNav = [[UIBarButtonItem alloc]
+               initWithTitle:@"back"
+               style:UIBarButtonItemStyleBordered
+               target:self
+               action:@selector(moveBack:)];
     
     leftNav = [[UIBarButtonItem alloc]
                initWithTitle:@"left"
@@ -193,26 +212,27 @@
     NSURL *urlstring = [NSURL URLWithString:url];
     NSData *imageData = [NSData dataWithContentsOfURL:urlstring];
     UIImage *image = [UIImage imageWithData:imageData];
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    
+    if(viewHeight == 480)
     {
-        CGSize result = [[UIScreen mainScreen] bounds].size;
-        if(result.height == 480)
-        {
-            scrollImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,320,340)];
-        }
-        
-        else
-        {
-            scrollImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,myScrollImage.frame.size.width,myScrollImage.frame.size.height)];
-        }
+        scrollImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,320,392)];
+    }
+    else{
+         scrollImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,myScrollImage.frame.size.width,myScrollImage.frame.size.height)];
     }
     
-    
     [scrollImage setImage:image];
-    myScrollImage.showsHorizontalScrollIndicator = YES;
-    [myScrollImage addSubview:scrollImage];
-    myScrollImage.contentSize = CGSizeMake(myScrollImage.frame.size.width, myScrollImage.frame.size.height);
-    [scrollImageView addSubview:myScrollImage];
+    detailImage.showsHorizontalScrollIndicator = YES;
+   // myScrollImage.showsHorizontalScrollIndicator = YES;
+   // [myScrollImage addSubview:scrollImage];
+    [detailImage addSubview:scrollImage];
+    detailImage.contentSize = CGSizeMake(detailImage.frame.size.width, detailImage.frame.size.height);
+    //myScrollImage.contentSize = CGSizeMake(myScrollImage.frame.size.width, myScrollImage.frame.size.height);
+    [detailView addSubview:detailImage];
+    //[scrollImageView addSubview:myScrollImage];
+    
+    topNavItem.leftBarButtonItem = backNav;
+    topNav.items = [NSArray arrayWithObject:topNavItem];
     
     navItem.leftBarButtonItem = leftNav;
     leftNav.tag = index.intValue;
@@ -222,20 +242,27 @@
     
     if(index.intValue == imageList.count-1)
     {
-        navItem.rightBarButtonItem = nil;
+        navItem.rightBarButtonItem.enabled = NO;
     }
-    if(index.intValue == 0 )
-    {
-        navItem.leftBarButtonItem = nil;
+    else{
+        if(index.intValue == 0 )
+        {
+            navItem.leftBarButtonItem.enabled = NO;
+        }
+        else{
+             navItem.rightBarButtonItem.enabled = YES;
+             navItem.leftBarButtonItem.enabled = YES;
+        }
     }
     
     bottomNav.items = [NSArray arrayWithObject:navItem];
-    [scrollImageView addSubview:bottomNav];
-    [scrollImageView addSubview:topNav];
-    [self.view addSubview:scrollImageView];
+    [detailView addSubview:bottomNav];
+    [detailView addSubview:topNav];
+    [self.view addSubview:detailView];
 }
 
 -(void)moveLeft:(id)sender{
+    
     NSNumber *index = [NSNumber numberWithInt:leftNav.tag-1];
     
     [self performSelector:@selector(scrollableImage:) withObject:index];
@@ -247,6 +274,13 @@
     NSNumber *index = [NSNumber numberWithInt:rightNav.tag + 1];
     
     [self performSelector:@selector(scrollableImage:) withObject:index];
+}
+
+-(void)moveBack:(id)sender{
+    
+    [detailView removeFromSuperview];
+    
+    
 }
 
 -(void)downloadDidFail

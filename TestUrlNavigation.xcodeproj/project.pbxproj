@@ -7,12 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A0D81D518DD8E8D00B20ADA /* ABCDScrollImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A0D81D318DD8E8D00B20ADA /* ABCDScrollImageViewController.m */; };
-		4A0D81D618DD8E8D00B20ADA /* ABCDScrollImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0D81D418DD8E8D00B20ADA /* ABCDScrollImageViewController.xib */; };
 		4A31873018D316A8009BD89C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A31872F18D316A8009BD89C /* Default-568h@2x.png */; };
 		4A4F091618D42488003DC8CF /* notfound.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4A4F091518D42488003DC8CF /* notfound.jpg */; };
 		4A4F091918D4298B003DC8CF /* ABCDAsyncDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F091818D4298B003DC8CF /* ABCDAsyncDownload.m */; };
-		4A6070B018D9B39D003E60DE /* ABCDFrameSetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6070AF18D9B39D003E60DE /* ABCDFrameSetter.m */; };
 		4ADFAD1B18C846D200AC309E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ADFAD1A18C846D200AC309E /* UIKit.framework */; };
 		4ADFAD1D18C846D200AC309E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ADFAD1C18C846D200AC309E /* Foundation.framework */; };
 		4ADFAD1F18C846D200AC309E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ADFAD1E18C846D200AC309E /* CoreGraphics.framework */; };
@@ -25,15 +22,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4A0D81D218DD8E8D00B20ADA /* ABCDScrollImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCDScrollImageViewController.h; sourceTree = "<group>"; };
-		4A0D81D318DD8E8D00B20ADA /* ABCDScrollImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCDScrollImageViewController.m; sourceTree = "<group>"; };
-		4A0D81D418DD8E8D00B20ADA /* ABCDScrollImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ABCDScrollImageViewController.xib; sourceTree = "<group>"; };
 		4A31872F18D316A8009BD89C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4A4F091518D42488003DC8CF /* notfound.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = notfound.jpg; sourceTree = "<group>"; };
 		4A4F091718D4298B003DC8CF /* ABCDAsyncDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCDAsyncDownload.h; sourceTree = "<group>"; };
 		4A4F091818D4298B003DC8CF /* ABCDAsyncDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCDAsyncDownload.m; sourceTree = "<group>"; };
-		4A6070AE18D9B39D003E60DE /* ABCDFrameSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCDFrameSetter.h; sourceTree = "<group>"; };
-		4A6070AF18D9B39D003E60DE /* ABCDFrameSetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCDFrameSetter.m; sourceTree = "<group>"; };
 		4ADFAD1618C846D200AC309E /* TestUrlNavigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestUrlNavigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ADFAD1A18C846D200AC309E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4ADFAD1C18C846D200AC309E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -107,11 +99,6 @@
 				4AE737E918C882950059DC59 /* ABCDDownloadControl.m */,
 				4A4F091718D4298B003DC8CF /* ABCDAsyncDownload.h */,
 				4A4F091818D4298B003DC8CF /* ABCDAsyncDownload.m */,
-				4A6070AE18D9B39D003E60DE /* ABCDFrameSetter.h */,
-				4A6070AF18D9B39D003E60DE /* ABCDFrameSetter.m */,
-				4A0D81D218DD8E8D00B20ADA /* ABCDScrollImageViewController.h */,
-				4A0D81D318DD8E8D00B20ADA /* ABCDScrollImageViewController.m */,
-				4A0D81D418DD8E8D00B20ADA /* ABCDScrollImageViewController.xib */,
 			);
 			path = TestUrlNavigation;
 			sourceTree = "<group>";
@@ -183,7 +170,6 @@
 				4ADFAD2518C846D200AC309E /* InfoPlist.strings in Resources */,
 				4ADFAD3118C846D200AC309E /* ABCDViewController.xib in Resources */,
 				4A31873018D316A8009BD89C /* Default-568h@2x.png in Resources */,
-				4A0D81D618DD8E8D00B20ADA /* ABCDScrollImageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,9 +183,7 @@
 				4ADFAD2718C846D200AC309E /* main.m in Sources */,
 				4ADFAD2B18C846D200AC309E /* ABCDAppDelegate.m in Sources */,
 				4ADFAD2E18C846D200AC309E /* ABCDViewController.m in Sources */,
-				4A0D81D518DD8E8D00B20ADA /* ABCDScrollImageViewController.m in Sources */,
 				4AE737EA18C882950059DC59 /* ABCDDownloadControl.m in Sources */,
-				4A6070B018D9B39D003E60DE /* ABCDFrameSetter.m in Sources */,
 				4A4F091918D4298B003DC8CF /* ABCDAsyncDownload.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
